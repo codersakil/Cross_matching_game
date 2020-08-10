@@ -10,75 +10,74 @@ Label(text='Welcome',font='comicsams 20',fg='red').pack(pady=50)
 def c1():
 	global l1,l2
 	h=b1
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c2():
 	global l1,l2
 	h=b2
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c3():
 	global l1,l2
 	h=b3
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c4():
 	global l1,l2
 	h=b4
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c5():
 	global l1,l2
 	h=b5
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c6():
 	global l1,l2
 	h=b6
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c7():
 	global l1,l2
 	h=b7
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c8():
 	global l1,l2
 	h=b8
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
 def c9():
 	global l1,l2
 	h=b9
-	h.config(bg='green')
+	h.config(bg='green',state='disable')
 	l1.remove(h)
 	l2.append(h)
-	auto()
 	check(l2)
+	
+def auto():
+	global l1,l3
+	rc=random.choice(l1)
+	l1.remove(rc)
+	rc.config(bg='red',state='disable')
+	l3.append(rc)
+	check(l3)
 	
 f1=Frame(root)
 b1=Button(f1,padx=100,pady=50,command=c1,bd=10)
@@ -98,7 +97,9 @@ b7.grid(row=3,column=1)
 b8=Button(f1,padx=100,pady=50,command=c8,bd=10)
 b8.grid(row=3,column=2)
 b9=Button(f1,padx=100,pady=50,command=c9,bd=10)
-b9.grid(row=3,column=3)		
+b9.grid(row=3,column=3)
+b_com=Button(f1,command=auto,pady=50,text='Coumputerer\'s turn')
+b_com.grid(row=4,column=1,columnspan=3,pady=50)		
 
 f1.pack()
 l1=[b1,b2,b3,b4,b5,b6,b7,b8,b9]
@@ -118,13 +119,7 @@ def check(list):
 			else:
 				tmsg.showinfo('Match result','Sorry,You loose')
 		
-def auto():
-	global l1,l3
-	rc=random.choice(l1)
-	l1.remove(rc)
-	rc.config(bg='red')
-	l3.append(rc)
-	check(l3)
+
 
 
 
