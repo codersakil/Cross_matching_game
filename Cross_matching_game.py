@@ -5,71 +5,32 @@ import random
 root=Tk()
 Label(text='Welcome',font='comicsams 20',fg='red').pack(pady=50)
 
-
+def test(h):
+	global l1,l2
+	h.config(bg='green',state='disable')
+	l1.remove(h)
+	l2.append(h)
+	check(l2)
 	
 def c1():
-	global l1,l2
-	h=b1
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b1)
+	
 def c2():
-	global l1,l2
-	h=b2
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b2)
 def c3():
-	global l1,l2
-	h=b3
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b3)
 def c4():
-	global l1,l2
-	h=b4
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b4)
 def c5():
-	global l1,l2
-	h=b5
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b5)
 def c6():
-	global l1,l2
-	h=b6
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b6)
 def c7():
-	global l1,l2
-	h=b7
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b7)
 def c8():
-	global l1,l2
-	h=b8
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b8)
 def c9():
-	global l1,l2
-	h=b9
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
+	test(b9)
 	
 def auto():
 	global l1,l3
@@ -118,9 +79,5 @@ def check(list):
 				tmsg.showinfo('Match result','Congratulatio,You won')
 			else:
 				tmsg.showinfo('Match result','Sorry,You loose')
-		
-
-
-
 
 root.mainloop()
