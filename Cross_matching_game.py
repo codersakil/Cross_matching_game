@@ -1,37 +1,63 @@
 from tkinter import *
 import tkinter.messagebox as tmsg
 import random
+player=random.randint(1,2)
 
 root=Tk()
-Label(text='Welcome',font='comicsams 20',fg='red').pack(pady=50)
+Label(text='Welcome',font='comicsams 20',fg='red',bg='yellow').pack(pady=5,fill=X)
+
+player_frame=Frame(root,bd=10, relief=SUNKEN)
+player_frame.pack(pady=10)
+Label(player_frame,text='Choose the playing mode',font='comicsams 15',fg='green').grid(row=1,column=1,columnspan=2)
+db=Frame(root,bd=5)
+db.pack()
+scr1=Label()
+play=Label(db,text=f'It is time of player {player}',bg='violet')
+mode=0
+def single():
+	global mode
+	mode=1
+	new()
+	p1.config(state='disable',bg='green')
+	p2.config(state=NORMAL,bg='grey')
+def double():
+	global mode
+	mode=2
+	new()
+	p2.config(state='disable',bg='green')
+	p1.config(state=NORMAL,bg='grey')
+	play.pack(pady=5)
+
+p1=Button(player_frame,text='Single',command=single)
+p1.grid(row=2,column=1,pady=50)
+p2=Button(player_frame,text='Double',command=double)
+p2.grid(row=2,column=2,pady=50)
 
 def test(h):
-	global l1,l2
-	h.config(bg='green',state='disable')
-	l1.remove(h)
-	l2.append(h)
-	check(l2)
-	
+	global l1,l2,l3,player
+	if (mode==1):
+		h.config(bg='green',state='disable')
+		l1.remove(h)
+		l2.append(h)
+		check(l2)
+	else:
+		if player==1:
+			h.config(bg='green',state='disable')
+			l1.remove(h)
+			l2.append(h)
+			check(l2)
+			player=2
+			
+		else:
+			l1.remove(h)
+			h.config(bg='red',state='disable')
+			l3.append(h)
+			check(l3)
+			player=1
+		play.config(text=f'It is time of player {player}')
 def c1():
 	test(b1)
-	
-def c2():
-	test(b2)
-def c3():
-	test(b3)
-def c4():
-	test(b4)
-def c5():
-	test(b5)
-def c6():
-	test(b6)
-def c7():
-	test(b7)
-def c8():
-	test(b8)
-def c9():
-	test(b9)
-	
+		
 def auto():
 	global l1,l3
 	rc=random.choice(l1)
@@ -40,33 +66,53 @@ def auto():
 	l3.append(rc)
 	check(l3)
 	
-f1=Frame(root)
-b1=Button(f1,padx=100,pady=50,command=c1,bd=10)
-b1.grid(row=1,column=1)
-b2=Button(f1,padx=100,pady=50,command=c2,bd=10)
-b2.grid(row=1,column=2)
-b3=Button(f1,padx=100,pady=50,command=c3,bd=10)
-b3.grid(row=1,column=3)
-b4=Button(f1,padx=100,pady=50,command=c4,bd=10)
-b4.grid(row=2,column=1)
-b5=Button(f1,padx=100,pady=50,command=c5,bd=10)
-b5.grid(row=2,column=2)
-b6=Button(f1,padx=100,pady=50,command=c6,bd=10)
-b6.grid(row=2,column=3)
-b7=Button(f1,padx=100,pady=50,command=c7,bd=10)
-b7.grid(row=3,column=1)
-b8=Button(f1,padx=100,pady=50,command=c8,bd=10)
-b8.grid(row=3,column=2)
-b9=Button(f1,padx=100,pady=50,command=c9,bd=10)
-b9.grid(row=3,column=3)
-b_com=Button(f1,command=auto,pady=50,text='Coumputerer\'s turn')
-b_com.grid(row=4,column=1,columnspan=3,pady=50)		
+series=0
+def new():
+	global series
+	global l1,l2,l3,b_com,b1,b2,b3,b4,b5,b6,b7,b8,b9,f1,b_com,b_new
+	if series==1:
+		f1.pack_forget()
+	series=1
+	f1=Frame(root)
+	b1=Button(f1,padx=100,pady=50,command=lambda:test(b1),bd=10)
+	b1.grid(row=1,column=1)
+	b2=Button(f1,padx=100,pady=50,command=lambda:test(b2),bd=10)
+	b2.grid(row=1,column=2)
+	b3=Button(f1,padx=100,pady=50,command=lambda:test(b3),bd=10)
+	b3.grid(row=1,column=3)
+	b4=Button(f1,padx=100,pady=50,command=lambda:test(b4),bd=10)
+	b4.grid(row=2,column=1)
+	b5=Button(f1,padx=100,pady=50,command=lambda:test(b5),bd=10)
+	b5.grid(row=2,column=2)
+	b6=Button(f1,padx=100,pady=50,command=lambda:test(b6),bd=10)
+	b6.grid(row=2,column=3)
+	b7=Button(f1,padx=100,pady=50,command=lambda:test(b7),bd=10)
+	b7.grid(row=3,column=1)
+	b8=Button(f1,padx=100,pady=50,command=lambda:test(b8),bd=10)
+	b8.grid(row=3,column=2)
+	b9=Button(f1,padx=100,pady=50,command=lambda:test(b9),bd=10)
+	b9.grid(row=3,column=3)
+	b_com=Button(f1,command=auto,pady=50,text='Coumputerer\'s turn')
+	b_com.grid(row=4,column=1,columnspan=3,pady=50)
+	
+	b_new=Button(f1,text='New Game',command=new)
+	b_new.grid(row=5,column=1,columnspan=3,pady=10)
+	l1=[b1,b2,b3,b4,b5,b6,b7,b8,b9]
+	l2=[]
+	l3=[]
+	f1.pack_forget()
+	f1.pack()
+	global player
+	if mode==2:
+		b_com.grid_forget()
+		player=random.randint(1,2)
+		play.config(text=f'It is time of player {player}')
+	else:
+		b_com.grid(row=4,column=1,columnspan=3,pady=50)
 
-f1.pack()
-l1=[b1,b2,b3,b4,b5,b6,b7,b8,b9]
-l2=[]
-l3=[]
 
+
+	
 def check(list):
 	match=[[b1,b2,b3],[b1,b4,b7],[b1,b5,b9],[b2,b5,b8],[b3,b6,b9],[b3,b5,b7],[b4,b5,b6],[b7,b8,b9]]
 	for cl in match:
@@ -76,8 +122,14 @@ def check(list):
 				i+=1
 		if i==3:
 			if list==l2:
-				tmsg.showinfo('Match result','Congratulatio,You won')
+				if mode==1:
+					tmsg.showinfo('Match result','Congratulatio,You won')
+				else:
+					tmsg.showinfo('Match result','Congratulation player1,You won')
 			else:
-				tmsg.showinfo('Match result','Sorry,You loose')
+				if mode==1:
+					tmsg.showinfo('Match result','Sorry,You loose')
+				else:
+					tmsg.showinfo('Match result','Congratulation player2,You won')
 
 root.mainloop()
