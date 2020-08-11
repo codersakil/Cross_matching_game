@@ -146,5 +146,6 @@ def check(list):
 					tmsg.showinfo('Match result','Congratulation player2,You won')
 					scr2+=1
 					plscr2.config(text=f'Player 2 score:\n{scr2}')
+			new()
 
 root.mainloop()
